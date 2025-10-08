@@ -11,9 +11,9 @@
 - **Задача.** Бинарная классификация твитов: *Related & Informative* (информативные) vs *Not informative* (неинформативные).
 - **Данные.** Набор **CrisisLex T26** (26 событий разных типов). Тексты нормализуются и переводятся (для не‑английских), дубль‑твиты удаляются.
 - **Модели.**
-  1) **LSTM + Word2Vec** (from scratch tokenizer + padding)
-  2) **BERT (`bert-base-uncased`)**
-  3) **XLNet (`xlnet-base-cased`)**
+  1) **LSTM + Word2Vec** (from scratch tokenizer + padding) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1bYeuqP2WHV2BE2WymFs9oED8cUayG9aR)
+  2) **BERT (`bert-base-uncased`)** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1yQrwN64BG2YrpsLeWasCOgtsNVH4y2bk)
+  3) **XLNet (`xlnet-base-cased`)** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1I6m1z4Wwe59C6-QhcsIFEEAPUauwLKkZ)
 - **Сценарии экспериментов.**
   - *Scenario 1 (specialized):* обучение и тест в пределах **одного типа кризиса** (например, наводнения).
   - *Scenario 2 (generic):* обучение на **всех типах**, тест на отложенных событиях (кросс‑типовая генерализация).
