@@ -11,9 +11,9 @@
 - **Задача.** Бинарная классификация твитов: *Related & Informative* (информативные) vs *Not informative* (неинформативные).
 - **Данные.** Набор **CrisisLex T26** (26 событий разных типов). Тексты нормализуются и переводятся (для не‑английских), дубль‑твиты удаляются.
 - **Модели.**
-  1) **LSTM + Word2Vec** (from scratch tokenizer + padding) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1bYeuqP2WHV2BE2WymFs9oED8cUayG9aR)
-  2) **BERT (`bert-base-uncased`)** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1yQrwN64BG2YrpsLeWasCOgtsNVH4y2bk)
-  3) **XLNet (`xlnet-base-cased`)** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1I6m1z4Wwe59C6-QhcsIFEEAPUauwLKkZ)
+  1) **LSTM + Word2Vec** (from scratch tokenizer + padding)
+  2) **BERT (`bert-base-uncased`)**
+  3) **XLNet (`xlnet-base-cased`)**
 - **Сценарии экспериментов.**
   - *Scenario 1 (specialized):* обучение и тест в пределах **одного типа кризиса** (например, наводнения).
   - *Scenario 2 (generic):* обучение на **всех типах**, тест на отложенных событиях (кросс‑типовая генерализация).
@@ -40,7 +40,7 @@
 
 ---
 
-## 🧪 Данные и предобработка
+## 🧪 Данные и предобработка [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1T4XiS8l6RgoAUB9ItGfS2u57tPVpATT1)
 
 **Источник:** CrisisLex T26 — 26 событий, 12 типов кризисов (наводнения, землетрясения, крушения и т. п.).  
 **Целевая переменная:** бинарная (Informative / Not informative).
@@ -59,7 +59,7 @@
 
 ## 🧩 Модели
 
-### 1) LSTM + Word2Vec — `02_LSTMword2vec.ipynb`
+### 1) LSTM + Word2Vec — `02_LSTMword2vec.ipynb` [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1bYeuqP2WHV2BE2WymFs9oED8cUayG9aR)
 
 **Текст → индексы.**
 - `keras_preprocessing.Tokenizer`, `pad_sequences` до `max_length`, ограничение словаря `vocabulary_size`.
@@ -85,7 +85,7 @@ Embedding(vocab_size, 50) → SpatialDropout1D(p≈0.3) → LSTM(256) → Dropou
 - Лог параметров/метрик/кривых/ROC.
 - Лог модели с `signature` и `input_example` (чтобы убрать предупреждения), при необходимости указываются `pip_requirements` («очищенные» версии без `+cu***`).
 
-### 2) BERT — `03_BERT.ipynb`
+### 2) BERT — `03_BERT.ipynb` [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1yQrwN64BG2YrpsLeWasCOgtsNVH4y2bk)
 
 - `AutoModelForSequenceClassification("bert-base-uncased", num_labels=2)`.
 - Оптимизатор `AdamW`, `get_linear_schedule_with_warmup` (warmup ≈ 10% шагов).
@@ -93,7 +93,7 @@ Embedding(vocab_size, 50) → SpatialDropout1D(p≈0.3) → LSTM(256) → Dropou
 - Взвешивание классов для `CrossEntropyLoss` по доле положительного класса в train.
 - Логика обучения: **train → val** (лучший state) → **test**. Логирование кривых и ROC в MLflow.
 
-### 3) XLNet — `04_XLNETFineTuning.ipynb`
+### 3) XLNet — `04_XLNETFineTuning.ipynb` [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1I6m1z4Wwe59C6-QhcsIFEEAPUauwLKkZ)
 
 - `AutoModelForSequenceClassification("xlnet-base-cased", num_labels=2)`.
 - Те же принципы: `AdamW` + linear warmup, AMP, class weights, MLflow, строгие сплиты.
