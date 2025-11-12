@@ -32,7 +32,7 @@
 ```
 .
 ├── 01_AutomaticDetectionOfCrisisRelatedMessages.ipynb   # Подготовка данных, EDA, baseline (лексикон)
-├── 02_LSTMword2vec.ipynb                                # LSTM + Word2Vec (PyTorch) + MLflow
+├── 02_LSTMword2vec.ipynb                                # LSTM + Word2Vec + MLflow
 ├── 03_BERT.ipynb                                        # Дообучение BERT + MLflow + ROC/AUC
 ├── 04_XLNETFineTuning.ipynb                             # Дообучение XLNet + MLflow + ROC/AUC
 └── README.md                                            # Отчёт по проекту
